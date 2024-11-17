@@ -1,0 +1,50 @@
+.container{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex: 1
+}
+
+.frames{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+}
+
+.blocks{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    gap: 4px;
+    align-items: center;
+    outline: 2px solid rgb(232, 232, 232);
+}
+.blocks > div{
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    width: 100%;
+    padding: 0px 24px;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.blocks > div:hover{
+    background-color: rgb(232, 232, 232);
+}
+
+.grid-container{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    gap: 2px;
+    height: max-content;
+    background-color: rgb(232, 232, 232);
+    padding: 2px;
+}
+
+.right{
+    box-shadow: -2px 0 0 2px rgb(232, 232, 232);
+}
