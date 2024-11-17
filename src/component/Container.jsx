@@ -1,6 +1,6 @@
 import "./Container.css";
 
-import { memo, useContext, useEffect, useMemo, useState } from "react";
+import { memo, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { Blocks, Grid } from "./Grid";
 import { Block } from "./Block";
 import { FrameContext, GridContext } from "../App";
@@ -13,8 +13,7 @@ export const Container = memo(function Container() {
   const { frames, setCurrentFrame } = useContext(FrameContext);
   const [state, setState] = useState({});
 
-  const blocks = useMemo(
-    () => [
+  const blocks = [
       {
         type: "progress",
         label: "Progress",
@@ -70,26 +69,7 @@ export const Container = memo(function Container() {
           });
         },
       },
-      {
-        type: "button",
-        label: "Button",
-        value: "Submit",
-        onClick: () => {
-          setState((p) => {
-            const message = Object.entries(p)
-              .map(([id, { value, component }]) => {
-                return `${value} is selected from grid Id: "${id}" and component "${component}"`;
-              })
-              .join("\n");
-
-            alert(message);
-            return { ...p };
-          });
-        },
-      },
-    ],
-    [state]
-  );
+    ]
 
   useEffect(() => {
     setState({});
@@ -127,17 +107,22 @@ export const Container = memo(function Container() {
             title="App"
             open={openModal}
             onOk={() => {
-              setOpenModal(false);
+              const message = Object.entries(state)
+              .map(([id, { value, component }]) => {
+                return `${value} is selected from grid Id: "${id}" and component "${component}"`;
+              })
+              .join("\n");
+
+            alert(message);
             }}
             onCancel={() => {
               setOpenModal(false);
             }}
-            // on
-            // okText="Confirm"
+            on
+            okText="Submit"
             cancelText="Close"
             width={400}
             centered
-            footer=""
           >
             <BlockRender grids={grids} />
           </Modal>

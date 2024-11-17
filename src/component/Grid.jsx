@@ -30,9 +30,6 @@ export const Blocks = {
     );
   },
   options: Options,
-  button: ({ value, type, ...props }) => {
-    return <Button type="primary" {...props }>{value}</Button>;
-  }
 };
 
 export const Grid = ({ block, id }) => {
